@@ -1,47 +1,46 @@
 const phrase = "La mejor forma de predecir el futuro es creándolo"
 
-let obtenerLongitudDePalabra = (phrase, index) => {
-    
-    const palabras = phrase.split(' ');
-
-    // Paso 2: Seleccionar la palabra en el índice especificado
-    if (index >= 0 && index < palabras.length) {
-        const palabraSeleccionada = palabras[index];
-
-        // Paso 3: Convertir la palabra seleccionada a string explícitamente
-        const palabraComoString = String(palabraSeleccionada);
-
-        // Paso 4: Calcular la longitud de la palabra como string
-        const longitudPalabra = palabraComoString.length;
-
-        // Paso 5: Retornar el resultado (longitud de la palabra)
-        return longitudPalabra;
+ let selectWordLength = (text,index) => {
+    const WordsArray = text.split(" ");
+    if (index >=0 && index < WordsArray.length) {
+        const selectWord = WordsArray[index];
+        const wordString = String(selectWord);
+        const wordLength = wordString.length;
+        return wordLength;
     } else {
-        // Manejar el caso en el que el índice está fuera del rango válido
-        return "Error: El índice especificado no existe en el array de palabras.";
+        return "Error: El indice especificado no existe en el array de palabras.";
     }
 }
 
-const indice = 1;
+// 1.- Llamado 
+console.log("La longitud de caracteres en la palabra selecionada es:", selectWordLength(phrase,1));
 
-const resultado = obtenerLongitudDePalabra (phrase, indice);
-console.log("La longitud de la palabra seleccionada es",resultado);
+let deleteWordInPhrase = (text,index) => {
+    const arrayPhrase = text.split(" ");
+    const deleteWord = arrayPhrase.splice (index,1);
+    const joinPhrase = arrayPhrase.join(" ");
+    return joinPhrase; 
+} 
 
-const eliminarPalabraPorIndice = (frase, index) => {
-    const palabras = frase.split(' ');
+// 2.- Llamado
+console.log("La frase eliminando el index seleccionado es la siguiente:", deleteWordInPhrase(phrase,1))
 
-   palabras.splice(index, 1);
+let filterWords = (text) => {
+    const splitWords = text.split(" ");
+    const wordsLength = splitWords.map(word => word.length);
+    const filteredWords = splitWords.filter((word, index) => wordsLength[index] >= 3);
+    const filterPhrase = filteredWords.join(" ")
+    return filterPhrase
+} 
 
-    
-    const fraseModificada = palabras.join(' ');
-
-    
-    return fraseModificada;
-}
+//3.- Llamado 
+console.log("La frase con el filtro aplicado es la siguiente:",filterWords(phrase))
 
 
+let reversePhrase = (text) => text.split("").reverse().join("");
 
-const phraseModif = eliminarPalabraPorIndice(phrase, 1);
+// 4.- Llamado 
+console.log("La frase ivertida es la siguiente:",reversePhrase(phrase));
 
 
 
