@@ -78,10 +78,9 @@ function formatNameAndLastname(user) {
     return `${user.name} ${user.lastname}`;
   }
   
-  // Paso 2: Array para almacenar los resultados
-  const usersNamesList = [];
+     const usersNamesList = [];
   
-  // Paso 3: Iterar sobre cada usuario en 'users' y realizar las operaciones
+  
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
     const formattedName = formatNameAndLastname(user);
