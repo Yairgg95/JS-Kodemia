@@ -91,9 +91,57 @@ function formatNameAndLastname(user) {
   console.log(usersNamesList);
 
 
-     /* 2.- Necesitamos una lista con únicamente aquellos usuarios con género "Male"
-      3.- Necesitamos una lista con únicamente aquellos usuarios con género "Female"
+     /* 2.- Necesitamos una lista con únicamente aquellos usuarios con género "Male" */
+
+const getMales = (list) => {
+    const males = []
+    for (let i = 0; i < list.length; i++){
+     const user = list[i]; 
+        if (user.gender === "Male") {
+      males.push(user);
+
+    }
+}
+return males;
+};
+
+console.log(getMales(users))
+
+
+     /*
+      3.- Necesitamos una lista con únicamente aquellos usuarios con género "Female"*/
+      const getFemales = (list) => {
+        const females = []
+        for (let i = 0; i < list.length; i++){
+         const user = list[i]; 
+            if (user.gender === "Female") {
+          females.push(user);
+     }
+    }
+    return females;
+    };
+    
+    console.log(getFemales(users))
+
+
+      /*
       4.- Necesitamos saber la edad promedio de los usuarios
+*/
+const getAverageAge = (list) => {
+    let averageAge = 0;
+    for (let i = 0; i < list.length; i++) {
+        const user = list[i]
+        averageAge += user.age;
+    }
+    const calculateAverageAge = averageAge / list.length ;
+    return averageAge
+}
+
+console.log("La edad promedio de los usuarios es:",getAverageAge(users))
+
+
+
+/*
       5.- Necesitamos saber la mayor edad
       6.- Necesitamos saber la menor edad
   */
