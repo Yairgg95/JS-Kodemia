@@ -68,14 +68,15 @@ const canes = [
 
       const vaccinatedDogs = (list) => {
         let total = 0;
-        for (let i = 0; i < list.length; i++) {
-            const can = list[i];
+
+        list.forEach((can) => {
             if(can.vacunado === true) {
                 total++;
-            }
-        }
+            } 
+        });
         return total;
-    }
+        }
+
   
   
  console.log("La cantidad de perros vacunados es:",vaccinatedDogs(canes))     
