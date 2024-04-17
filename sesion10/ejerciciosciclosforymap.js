@@ -75,8 +75,8 @@ const canes = [
             } 
         });
         return total;
-        }
-
+        
+    }
   
   
  console.log("La cantidad de perros vacunados es:",vaccinatedDogs(canes))     

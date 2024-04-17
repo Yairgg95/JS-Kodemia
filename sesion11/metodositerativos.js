@@ -55,6 +55,16 @@ const canes = [
   
   /*
       1.- Necesito conocer la edad promedio de todos los perros
+*/
+
+const getAverageAge = (list) => {
+  let  total = 0;
+  list.forEach((can) => total += can.edad);
+    const calculateAverageAge = total / list.length
+    return calculateAverageAge
+}
+console.log("La edad promedio de los perros en la lista es:",getAverageAge(canes)) 
+/*
       2.- Necesito obtener una lista de perros basados en el país al que pertenecen
       3.- Necesito una lista de los códigos postales de los perros
       4.- Necesito una lista que contenga la lista de países a los que pertenecen los perros, pero sin repetidos
