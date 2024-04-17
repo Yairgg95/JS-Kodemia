@@ -66,7 +66,22 @@ const getAverageAge = (list) => {
 console.log("La edad promedio de los perros en la lista es:",getAverageAge(canes)) 
 /*
       2.- Necesito obtener una lista de perros basados en el país al que pertenecen
+      */
+
+
+
+
+     /*
       3.- Necesito una lista de los códigos postales de los perros
+      */
+
+const getZipCode =(list) =>
+list.map((can) => dog.direccion.codigoPostal);
+
+console.log(getZipCode(list))
+
+
+/*
       4.- Necesito una lista que contenga la lista de países a los que pertenecen los perros, pero sin repetidos
       */
   
