@@ -8,12 +8,8 @@ let data = [
   /*
       1. Necesitamos una lista con los nombres completos de las personas que se encuentran en la data
       */
-      const getFullNames = (data) => {
-        let fullNames = data.map((person) => {
-       return `${person[0]} ${person[1]}`;
-        });
-       return fullNames;
-       }
+      const getFullNames = (data) =>  data.map((person) => `${person[0]} ${person[1]}`);
+       
        console.log(getFullNames(data));
 
        /*
