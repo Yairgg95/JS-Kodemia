@@ -526,7 +526,24 @@ const movies = [
       
         console.log(getRatingList(movies));
      //5. Obtener una lista de las películas que tienen una duración entre 2 rangos, por ejemplo las películas que duran entre 100 y 120 mins ( los valores de las duraciones deben ser dinámicos)
-     //6. Obtener una lista de películas con base en su clasificación
+const getMoviesByDuration = (list, minutes) => {
+    const moviesWithinRange = [];
+    list.forEach((movie) => {
+        const durationSplit = movie.duration.split(" ");
+        const durationInMinutes = parseInt(durationSplit[0], 10);
+        if (durationInMinutes > 100 && durationInMinutes < 120) {
+            moviesWithinRange.push(movie);
+        }
+    });
+    if (moviesWithinRange.length === 0) {
+        return "No hay películas que cumplan con la duración deseada";
+    }
+    return moviesWithinRange;
+};
+
+console.log(getMoviesByDuration(movies,"115 minutos"));
+console.log(getMoviesByDuration(movies,"150 minutos"));     
+//6. Obtener una lista de películas con base en su clasificación
      const getListByRating = (list) => {
         let result = list.reduce((accum, current) => {
           return accum[current.rating]
