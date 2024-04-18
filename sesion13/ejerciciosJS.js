@@ -615,6 +615,23 @@ console.log(getHowManyMoviesAreInRating(movies));
           {
               [pais]:[cantidad]
           }*/
+const getHowManyMoviesAreThereInTheCountry = (list) => {
+    let countryMovieList = list.reduce((accum, current) => {
+        return accum[current.country]
+            ? { ...accum, [current.country]: [...accum[current.country], current] }
+            : { ...accum, [current.country]: [current] };
+    }, {});
+
+    let movieListLength = {};
+    for (let country in countryMovieList) {
+        movieListLength[country] = countryMovieList[country].length;
+    }
+
+    return movieListLength;
+
+};
+
+console.log(getHowManyMoviesAreThereInTheCountry(movies));
       //12. Obtener la edad promedio de los actores protagonistas
 const getAverageAge = (list) => {
   let  total = 0;
