@@ -559,6 +559,15 @@ console.log(getMoviesByDuration(movies,"150 minutos"));
       console.log(getListByRating(movies));
 
      //7. Obtener una lista de películas películas estrenadas en un rango de años (por ejemplo, entre 2000 - 2010, los valores de los años deben ser dinámicos)
+
+const getMoviebyYear = (list) => {
+    const movieByYear = list.reduce((accum, current) => {
+        return (current.releaseYear > 2000 && current.releaseYear < 2010) ? [...accum, current] : accum;
+    }, []);
+    return movieByYear;
+};
+
+console.log(getMoviebyYear(movies))
      //8. Obtener una lista de películas con base en el país al que pertenecen
 const getMoviesByCountry = (list,country) => {
       let result = list.filter(
