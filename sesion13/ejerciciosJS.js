@@ -507,11 +507,14 @@ const movies = [
 
 
      //3. Obtener una lista con únicamente los nombres de los actores protagonistas de todas las películas, sin repetir
-     const getProtagonistList = (list) => {
-        let result = list.reduce((accum, current) =>  accum.includes(current.protagonists.name) ? accum : [...accum, current.protagonists.name],[]);
-        return result;
-        }
-      
+      const getProtagonistList = (list) => {
+        return list.reduce((accum, current) => { 
+            current.protagonists.forEach(actor => {
+            accum.includes(actor.name) ? accum : accum = [...accum, actor.name];
+            });
+            return accum;
+        }, []); 
+    }
         console.log(getProtagonistList(movies));
 
 
