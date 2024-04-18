@@ -563,6 +563,15 @@ console.log(getMoviesByCountry(movies,"Canada"))
               [pais]:[cantidad]
           }*/
       //12. Obtener la edad promedio de los actores protagonistas
+const getAverageAge = (list) => {
+  let  total = 0;
+    list.forEach((movie)=> movie.protagonists.forEach((actor) => total += actor.age ));
+    const calculateAverageAge = total / list.length;
+    return calculateAverageAge.toFixed(2)
+}
+
+console.log(getAverageAge(movies))
+
       //13. Dado el nombre de un actor, obtener la cantidad de películas de la lista en las que aparece
      /*14. Obtener una lista que contenga objetos de cada película con el siguiente formato:
       
