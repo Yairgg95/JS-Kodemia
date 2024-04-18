@@ -592,6 +592,24 @@ console.log(getMoviesWithoutOscars(movies))
         /*  {
               [nombre_de_la_clasificacion]:[cantidad]
           }*/
+const getHowManyMoviesAreInRating = (list) => {
+    let ratingMovieList = list.reduce((accum, current) => {
+        return accum[current.rating]
+            ? { ...accum, [current.rating]: [...accum[current.rating], current] }
+            : { ...accum, [current.rating]: [current] };
+    }, {});
+
+    let movieListLength = {};
+    for (let rating in ratingMovieList) {
+        movieListLength[rating] = ratingMovieList[rating].length;
+    }
+
+    return movieListLength;
+
+};
+
+console.log(getHowManyMoviesAreInRating(movies));
+
       //    Es decir, la propiedad del objeto resultante deber ser la clasificación, y el valor de esa propiedad debe ser la cantidad de películas que pertenecen a esa clasificación
       /*11. Obtener la cantidad de películas de cada país, organizada de la siguiente forma:
           {
