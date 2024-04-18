@@ -553,6 +553,15 @@ console.log(getMoviesByCountry(movies,"Reino Unido"))
 console.log(getMoviesByCountry(movies,"Canada"))
 
      //9. Obtener una lista de las películas que no obtuvieron premios Óscar
+const getMoviesWithoutOscars = (list) => {
+    const moviesWithoutOscars = [];
+    list.forEach((movie) => { 
+        movie.oscarAwards === 0 ? moviesWithoutOscars.push(movie) : null; 
+    }); 
+    return moviesWithoutOscars;
+}
+console.log(getMoviesWithoutOscars(movies))
+
      //10. Obtener la cantidad de películas de cada clasficación. Esta información debe estar organizada de la siguiente forma:
         /*  {
               [nombre_de_la_clasificacion]:[cantidad]
