@@ -543,6 +543,15 @@ const movies = [
 
      //7. Obtener una lista de películas películas estrenadas en un rango de años (por ejemplo, entre 2000 - 2010, los valores de los años deben ser dinámicos)
      //8. Obtener una lista de películas con base en el país al que pertenecen
+const getMoviesByCountry = (list,country) => {
+      let result = list.filter(
+        (movie) => movie.country.toLowerCase() === country.toLowerCase());
+    return !result.length ? `No hay peliculas que pertenezcan a ${country}` : result;
+     }
+
+console.log(getMoviesByCountry(movies,"Reino Unido"))
+console.log(getMoviesByCountry(movies,"Canada"))
+
      //9. Obtener una lista de las películas que no obtuvieron premios Óscar
      //10. Obtener la cantidad de películas de cada clasficación. Esta información debe estar organizada de la siguiente forma:
         /*  {
