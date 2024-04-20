@@ -643,6 +643,7 @@ const getAverageAge = (list) => {
 console.log(getAverageAge(movies))
 
       //13. Dado el nombre de un actor, obtener la cantidad de películas de la lista en las que aparece
+      let   
      /*14. Obtener una lista que contenga objetos de cada película con el siguiente formato:
       
       {
