@@ -152,6 +152,8 @@ const printPopularEntries = (popularArray, wrapperId) => {
   });
 };
 
+printAutorsCards(blogEntries,"autors-list")
+
 printBlogCards(blogEntries, "main-posts");
 
 printPopularEntries(
