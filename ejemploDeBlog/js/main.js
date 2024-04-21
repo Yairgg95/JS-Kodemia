@@ -74,28 +74,51 @@ const blogEntries = [
 
 console.log(blogEntries);
 
-/*
-<div class="card blog-card mb-3">
-    <img src="https://picsum.photos/id/237/200/300" alt="" />
-    <div class="card-body">
-      <h3 class="card-title">'Los Secretos de la Cocina Italiana'</h3>
-      <p class="card-text">
-        Explorar la cocina italiana va más allá de la pizza y la
-        pasta...
-      </p>
-    </div>
-  </div>
-</div>
-*/
+const createAutorCard = (entryObject) => {
+  let { image, autor } = entryObject;
+
+
+  let autorCard = document.createElement("div");
+  autorCard.classList.add("p-2","card", "blog-card", "d-flex","flex-row");
+
+  let containerImg = document.createElement("div")
+  containerImg.classList.add("d-flex","align-items-center","p-2")
+  let autorImage = document.createElement("img");
+  autorImage.classList.add("rounded-circle");
+  autorImage.setAttribute("src", image);
+  containerImg.append(autorImage);
+
+  let containerAutorName = document.createElement("div");
+  containerAutorName.classList.add( "d-flex","align-items-center");
+  let autorName = document.createElement("h4");
+  autorName.classList.add( "col-8");
+  autorName.textContent = autor;
+  containerAutorName.append(autorName);
+  
+
+  
+  autorCard.append(containerImg, containerAutorName);
+
+  return autorCard;
+};
+
+const printAutorCards = (blogData, wrapperId) => {
+  let wrapper = document.getElementById(wrapperId);
+  blogData.forEach((entry) => {
+    let autorCard = createAutorCard(entry); // Corrected function name
+    wrapper.append(autorCard);
+  });
+};
 
 const createBlogCard = (entryObject) => {
-  let { image, title, abstract } = entryObject;
+  let { image, title, abstract, fechaCreacion, rating } = entryObject;
 
   let card = document.createElement("div");
   card.classList.add("card", "blog-card", "mb-3");
 
   let cardImage = document.createElement("img");
   cardImage.setAttribute("src", image);
+
 
   let cardBody = document.createElement("div");
   cardBody.classList.add("card-body");
@@ -110,8 +133,23 @@ const createBlogCard = (entryObject) => {
   let cardTextContent = document.createTextNode(abstract);
   cardText.append(cardTextContent);
 
+  // aqui empiezo a modificar en caso de fallas
+  
+  let cardDateAndRating = document.createElement("p");
+   cardDateAndRating.classList.add("card-text", "text-end");
+  let createdDateAndRating =document.createTextNode(`${fechaCreacion} / ${rating}`);
+  cardDateAndRating.append(createdDateAndRating)
+
+  const containerButton = document.createElement("div")
+  containerButton.classList.add("text-end")
+  let cardButton = document.createElement("button");
+  cardButton.textContent = "Ir al post";
+  cardButton.classList.add("btn", "btn-primary", "col-3")
+  containerButton.append(cardButton)
+
+
   cardBody.append(cardTitle, cardText);
-  card.append(cardImage, cardBody);
+  card.append(cardImage, cardBody, createAutorCard(blogEntries), cardDateAndRating, containerButton);
 
   return card;
 };
@@ -152,7 +190,12 @@ const printPopularEntries = (popularArray, wrapperId) => {
   });
 };
 
-printAutorsCards(blogEntries,"autors-list")
+const getAutorList = (entryObject) => {
+  let result = entryObject.reduce((accum, current) =>  accum.includes(current[autor]) ? accum : [...accum, current[autor]],[]);
+  return result;
+  }
+
+printAutorCards(blogEntries, "autor-entries");
 
 printBlogCards(blogEntries, "main-posts");
 
