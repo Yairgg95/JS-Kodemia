@@ -105,7 +105,7 @@ const createAutorCard = (entryObject) => {
 const printAutorCards = (blogData, wrapperId) => {
   let wrapper = document.getElementById(wrapperId);
   blogData.forEach((entry) => {
-    let autorCard = createAutorCard(entry); // Corrected function name
+    let autorCard = createAutorCard(entry); 
     wrapper.append(autorCard);
   });
 };
