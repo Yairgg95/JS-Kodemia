@@ -75,7 +75,7 @@ const blogEntries = [
 console.log(blogEntries);
 
 const createAutorCard = (entryObject) => {
-  let { image, autor } = entryObject;
+  let { avatar, autor } = entryObject;
 
 
   let autorCard = document.createElement("div");
@@ -84,14 +84,14 @@ const createAutorCard = (entryObject) => {
   let containerImg = document.createElement("div")
   containerImg.classList.add("d-flex","align-items-center","p-2")
   let autorImage = document.createElement("img");
-  autorImage.classList.add("rounded-circle");
-  autorImage.setAttribute("src", image);
+  autorImage.classList.add("rounded-circle", "avatar");
+  autorImage.setAttribute("src", avatar);
   containerImg.append(autorImage);
 
   let containerAutorName = document.createElement("div");
-  containerAutorName.classList.add( "d-flex","align-items-center");
-  let autorName = document.createElement("h4");
-  autorName.classList.add( "col-8");
+  containerAutorName.classList.add( "d-flex","align-items-center","col-5");
+  let autorName = document.createElement("span");
+  autorName.classList.add( "fs-4");
   autorName.textContent = autor;
   containerAutorName.append(autorName);
   
@@ -111,7 +111,7 @@ const printAutorCards = (blogData, wrapperId) => {
 };
 
 const createBlogCard = (entryObject) => {
-  let { image, title, abstract, fechaCreacion, rating } = entryObject;
+  let { image, title, abstract, fechaCreacion, rating, autor, avatar } = entryObject;
 
   let card = document.createElement("div");
   card.classList.add("card", "blog-card", "mb-3");
@@ -134,6 +134,23 @@ const createBlogCard = (entryObject) => {
   cardText.append(cardTextContent);
 
   // aqui empiezo a modificar en caso de fallas
+  let autorCard = document.createElement("div");
+  autorCard.classList.add("p-2","card", "blog-card", "d-flex","flex-row");
+
+  let containerImg = document.createElement("div")
+  containerImg.classList.add("d-flex","align-items-center","p-2")
+  let autorImage = document.createElement("img");
+  autorImage.classList.add("rounded-circle", "avatar");
+  autorImage.setAttribute("src", avatar);
+  containerImg.append(autorImage);
+
+  let containerAutorName = document.createElement("div");
+  containerAutorName.classList.add( "d-flex","align-items-center","col-5");
+  let autorName = document.createElement("span");
+  autorName.classList.add( "fs-4");
+  autorName.textContent = autor;
+  containerAutorName.append(autorName);
+  autorCard.append(containerImg, containerAutorName);
   
   let cardDateAndRating = document.createElement("p");
    cardDateAndRating.classList.add("card-text", "text-end");
@@ -149,7 +166,7 @@ const createBlogCard = (entryObject) => {
 
 
   cardBody.append(cardTitle, cardText);
-  card.append(cardImage, cardBody, createAutorCard(blogEntries), cardDateAndRating, containerButton);
+  card.append(cardImage, cardBody, autorCard, cardDateAndRating, containerButton);
 
   return card;
 };
@@ -190,12 +207,19 @@ const printPopularEntries = (popularArray, wrapperId) => {
   });
 };
 
-const getAutorList = (entryObject) => {
-  let result = entryObject.reduce((accum, current) =>  accum.includes(current[autor]) ? accum : [...accum, current[autor]],[]);
+const getAutor = (dataArray) => {
+  let result = dataArray.reduce((accum, current) => {
+    const existAutor = accum.find(autor => autor.autor === current.autor);
+    if (!existAutor) {
+      accum.push(current);
+    }
+    return accum
+  }, []);
   return result;
-  }
+}
 
-printAutorCards(blogEntries, "autor-entries");
+
+printAutorCards(getAutor(blogEntries), "autor-entries");
 
 printBlogCards(blogEntries, "main-posts");
 
