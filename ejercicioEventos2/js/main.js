@@ -1,33 +1,41 @@
-/*
-  1.- Activar el formulario, de tal forma que al dar click en el botón "crear usuario" se genere un objeto con la siguiente forma:
-  person = {
-    name:"...",
-    email:"...",
-    password:"..."
-  }
-*/
-const user = (name, email, password) => {
-  this.name = name;
-  this.email = email;
-  this.password = password; 
-}
-/*
-  2.- Agregar a la funcionalidad, una lista "persons", de tal forma que al dar click en el boton, la persona creada en el paso anterior, se agregue a esa lista "persons"
 
-   persons = []
-  person -> persons
-  */
-  const usersList = []; 
+    let usuarios = [];
 
-const getUsersList = (objectsArray, existUser) => {
-  const {name, email, password } = existUser;
-  const userExists = usersList.some((user) => user.email === email);
-  userExists ? null : usersList.push(existUser);
-  return usersList
-};
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+        event.preventDefault();
 
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
 
+        const correoExiste = usuarios.some(usuario => usuario.email === email);
 
-  /*
-  3.- Agregar la funcionalidad para que cada que agregue una persona nueva, esta se vea reflejada junto con las anteriores en la interfaz de usuario
-  */
+        if (!correoExiste) {
+            const nuevoUsuario = {
+                name: name,
+                email: email,
+                password: password
+            };
+
+            usuarios.push(nuevoUsuario);
+
+            document.getElementById('myForm').reset();
+
+            actualizarListaUsuarios();
+        } else {
+            alert('El correo electrónico ya está registrado.');
+        }
+    });
+
+    function actualizarListaUsuarios() {
+        const userList = document.getElementById('userList');
+        userList.innerHTML = '';
+        usuarios.forEach(function(usuario) {
+            const li = document.createElement('li');
+            li.textContent = `Nombre: ${usuario.name}, Email: ${usuario.email}, Contraseña: ${usuario.password}`;
+            li.className = 'list-group-item';
+            userList.appendChild(li);
+        });
+    }
+
+    actualizarListaUsuarios();
