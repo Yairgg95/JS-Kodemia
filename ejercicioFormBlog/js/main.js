@@ -14,10 +14,10 @@ let inputs = document.querySelectorAll("#post-form input");
 let saveEntryBtn = document.getElementById("save-entry-button");
 saveEntryBtn.addEventListener("click", () => {
   let blogEntry = {};
-  console.log("hol");
   inputs.forEach((input) => {
     blogEntry[input.name] = input.value;
   });
   console.log(blogEntry);
   saveEntry(blogEntry);
 });
+
